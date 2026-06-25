@@ -1,0 +1,59 @@
+<div class="container">
+
+  <h1>🎮 Welcome to GameKey Store</h1>
+
+  <div class="form-group">
+
+    <input
+      type="text"
+      [(ngModel)]="newGameTitle"
+      placeholder="🎮 Enter game title">
+
+    <input
+      type="number"
+      [(ngModel)]="newGamePrice"
+      placeholder="Price">
+
+    <button (click)="addGame()">
+      Add Game
+    </button>
+
+  </div>
+
+  @if (games.length === 0) {
+
+    <p>No games available.</p>
+
+  } @else {
+
+    <ul class="game-list">
+
+      @for (game of games; track game.id) {
+
+      <li class="game-card">
+
+        <h3>{{ game.title }}</h3>
+
+        <p class="price">
+          ${{ game.price }}
+        </p>
+
+        <p>
+          {{ game.available ? '✅ In Stock' : '❌ Out of Stock' }}
+        </p>
+
+        <button
+          class="toggle-btn"
+          (click)="toggleAvailability(game.id)">
+          Toggle Availability
+        </button>
+
+      </li>
+
+      }
+
+    </ul>
+
+  }
+
+</div>
